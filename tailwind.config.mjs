@@ -6,7 +6,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				'sans': ['"Plus Jakarta Sans Variable"', ...defaultTheme.fontFamily.sans],
+				// 'sans': ['Montserrat Variable, sans-serif', ...defaultTheme.fontFamily.sans],
 			},
 		}
 	},
