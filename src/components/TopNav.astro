@@ -1,17 +1,13 @@
 ---
 
+import BottomTopIcon from "./BottomTopIcon.astro";
+
 ---
 
 <nav class="fixed top-20 w-full z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-end h-16 items-center space-x-8">
-      <!-- Menu Links con Icone -->
-      <a class="flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200">
-        Search (modal)
-      </a>
-      <a class="flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200">
-        Contestuale
-      </a>
+      <BottomTopIcon alt="Search" image="/icons/search.svg" labelPopover="cerca"></BottomTopIcon>
     </div>
   </div>
 </nav>

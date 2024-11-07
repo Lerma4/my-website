@@ -1,0 +1,29 @@
+---
+
+import Popover from "./common/Popover.astro";
+import Image from "astro/components/Image.astro";
+
+interface Props {
+    alt: string;
+    image: string;
+    labelPopover: string;
+}
+
+const {
+    alt,
+    image,
+    labelPopover,
+} = Astro.props;
+---
+
+<Popover label={labelPopover}>
+    <div class="">
+        <Image
+                src={image}
+                alt={alt}
+                width={30}
+                height={30}
+                format="webp"
+        />
+    </div>
+</Popover>
