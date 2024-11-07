@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import BottomNav from "../components/BottomNav.astro";
+import TopNav from "../components/TopNav.astro";
 interface Props {
 	title: string;
 }
@@ -19,7 +20,17 @@ const { title } = Astro.props;
 		<ViewTransitions />
 		<title>{title}</title>
 	</head>
+	<style>
+		body {
+			background-image: url('/background/pattern-randomized.svg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position: center;
+		}
+	</style>
 	<body>
+		<TopNav></TopNav>
 		<slot />
 		<BottomNav></BottomNav>
 	</body>

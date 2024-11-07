@@ -20,13 +20,15 @@ const {
 <a href={url} class="hover:scale-125 focus:scale-100 duration-300">
 
     <Popover label={labelPopover}>
-        <Image
-                src={image}
-                alt={alt}
-                width={50}
-                height={50}
-                class="rounded-2xl"
-                format="webp"
-        />
+        <div class="bg-white rounded-xl p-1">
+            <Image
+                    src={image}
+                    alt={alt}
+                    width={50}
+                    height={50}
+                    class="rounded-2xl"
+                    format="webp"
+            />
+        </div>
     </Popover>
 </a>
