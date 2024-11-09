@@ -10,7 +10,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="it">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Lorenzo Longhi's personal website" />
@@ -29,9 +29,11 @@ const { title } = Astro.props;
 			background-position: center;
 		}
 	</style>
-	<body class="font-mono">
-		<TopNav></TopNav>
-		<slot />
-		<BottomNav></BottomNav>
-	</body>
+    <body class="font-mono">
+        <TopNav></TopNav>
+        <main class="container mx-auto px-5 mt-24 xl:max-w-[60%]">
+            <slot />
+        </main>
+        <BottomNav></BottomNav>
+    </body>
 </html>
