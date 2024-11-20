@@ -1,19 +1,29 @@
 ---
-
 import Layout from "../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
+import PortfolioContent from "../components/PortfolioContent.astro";
 
 const portfolioList = await getCollection('portfolio');
-
 ---
 
 <Layout title="LonghiDev - Portfolio">
     <h1 class="text-4xl font-bold text-left mb-4">Portfolio</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4">
         {portfolioList.map((item) => (
-            <div class="bg-white rounded-lg shadow-lg p-4">
-                <h2 class="text-xl font-bold">{item.data.title}</h2>
-            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Colonna sinistra - Sticky */}
+                    <div class="sticky top-5 h-max">
+                        <h2 class="text-xl font-bold bg-white p-4 rounded-lg shadow-md">
+                            {item.data.title}
+                        </h2>
+                    </div>
+
+                    {/* Colonna destra - Contenuto */}
+                    <div class="prose bg-white rounded-lg shadow-lg p-4">
+                        <PortfolioContent portfolioContent={item} />
+                    </div>
+                </div>
         ))}
     </div>
 </Layout>
+

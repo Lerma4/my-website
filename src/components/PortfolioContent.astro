@@ -1,0 +1,13 @@
+---
+import type {CollectionEntry} from "astro:content";
+
+type Props = {
+    portfolioContent: CollectionEntry<"portfolio">;
+};
+
+const {portfolioContent} = Astro.props;
+const {Content, headings} = await portfolioContent.render();
+---
+<div>
+    <Content/>
+</div>
