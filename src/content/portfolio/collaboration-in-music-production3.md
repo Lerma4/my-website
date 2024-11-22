@@ -1,6 +1,5 @@
 ---
-title: Lavoro 1
-technologies: ["ASTRO", "HTML"]
+title: Lavoro 3
 tags: ["bo", "test"]
 ---
 

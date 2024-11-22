@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCollection, render } from "astro:content";
+import {getCollection, render} from "astro:content";
 import PortfolioContent from "../components/PortfolioContent.astro";
 
 const portfolioList = await getCollection('portfolio');
@@ -10,17 +10,28 @@ const portfolioList = await getCollection('portfolio');
     <h1 class="text-4xl font-bold text-left mb-4">Portfolio</h1>
     <div class="grid grid-cols-1 gap-4">
         {portfolioList.map((item) => (
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     {/* Colonna sinistra - Sticky */}
                     <div class="sticky top-5 h-max">
-                        <h2 class="text-xl font-bold bg-white p-4 rounded-lg shadow-md">
-                            {item.data.title}
-                        </h2>
+                        <div class="bg-white md:bg-transparent bg-gradient-to-b from-gray-200/40 via-white/60 to-transparent p-4 rounded-lg shadow-md">
+                            <h2 class="text-xl font-bold">
+                                {item.data.title}
+                            </h2>
+                            {item.data.technologies && (
+                                    <h2 class="text-xl font-bold">
+                                        {item.data.technologies.map((tech, index, row) => (
+                                            <span>
+                                                {tech}{index + 1 !== row.length ? "," : ""}
+                                            </span>
+                                        ))}
+                                    </h2>
+                            )}
+                        </div>
                     </div>
 
                     {/* Colonna destra - Contenuto */}
-                    <div class="prose bg-white rounded-lg shadow-lg p-4">
-                        <PortfolioContent portfolioContent={item} />
+                    <div class="prose bg-white/60 rounded-lg shadow-lg p-4">
+                        <PortfolioContent portfolioContent={item}/>
                     </div>
                 </div>
         ))}
