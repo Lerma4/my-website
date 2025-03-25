@@ -7,6 +7,7 @@ interface Props {
     alt: string;
     image: string;
     labelPopover: string;
+    loading?: "eager" | "lazy";
 }
 
 const {
@@ -14,11 +15,11 @@ const {
     alt,
     image,
     labelPopover,
+    loading = "lazy"
 } = Astro.props;
 ---
 
 <a href={url} class="hover:scale-125 focus:scale-100 duration-300">
-
     <Popover label={labelPopover}>
         <div class="bg-white rounded-xl p-1 aspect-square content-center">
             <Image
@@ -28,6 +29,7 @@ const {
                     height={40}
                     class="rounded-2xl"
                     format="webp"
+                    loading={loading}
             />
         </div>
     </Popover>
