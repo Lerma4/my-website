@@ -1,6 +1,105 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BentoCard from "../components/BentoCard.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="LonghiDev">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="bento-grid">
+        <BentoCard
+            title="Featured Project"
+            height="h-96"
+            colSpan="md:col-span-2"
+            bgColor="bg-blue-100/70"
+            draggable={true}
+        >
+            <!-- Content goes here -->
+        </BentoCard>
+
+        <BentoCard 
+            title="Quick Links" 
+            height="h-48" 
+            bgColor="bg-amber-100/70" 
+            draggable={true}
+        >
+            <!-- Content goes here -->
+        </BentoCard>
+
+        <BentoCard 
+            height="h-48" 
+            bgColor="bg-emerald-100/70" 
+            draggable={true}
+        >
+            <!-- Content goes here -->
+        </BentoCard>
+
+        <BentoCard 
+            title="Skills" 
+            height="h-64" 
+            bgColor="bg-purple-100/70" 
+            draggable={true}
+        >
+            <!-- Skills content -->
+        </BentoCard>
+
+        <BentoCard 
+            title="Experience" 
+            height="h-64" 
+            colSpan="md:col-span-2" 
+            bgColor="bg-pink-100/70" 
+            draggable={true}
+        >
+            <!-- Experience content -->
+        </BentoCard>
+
+        <BentoCard 
+            title="Blog" 
+            height="h-64" 
+            bgColor="bg-orange-100/70" 
+            draggable={true}
+        >
+            <!-- Blog content -->
+        </BentoCard>
+
+        <BentoCard 
+            title="Contact" 
+            height="h-48" 
+            colSpan="md:col-span-4" 
+            bgColor="bg-teal-100/70" 
+            draggable={true}
+        >
+            <!-- Contact content -->
+        </BentoCard>
+    </div>
 </Layout>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const grid = document.getElementById('bento-grid');
+    if (grid) {
+      new Sortable(grid, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        // Removed the handle option to make the entire card draggable
+        onEnd: function(evt: { oldIndex: any; newIndex: any; }) {
+          // You can add code here to save the new order if needed
+          console.log('Card moved from index', evt.oldIndex, 'to', evt.newIndex);
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .sortable-ghost {
+    opacity: 0.4;
+  }
+  .sortable-chosen {
+    cursor: grabbing;
+  }
+  .sortable-drag {
+    transform: scale(1.05);
+  }
+</style>

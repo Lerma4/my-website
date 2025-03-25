@@ -1,0 +1,49 @@
+---
+interface Props {
+    title?: string;
+    description?: string;
+    bgColor?: string;
+    textColor?: string;
+    width?: string;
+    height?: string;
+    rounded?: string;
+    shadow?: string;
+    hover?: boolean;
+    transition?: boolean;
+    draggable?: boolean;
+    colSpan?: string;
+}
+
+const {
+    title,
+    description,
+    bgColor = "bg-white/80",
+    textColor = "text-gray-800",
+    width = "w-full",
+    height = "h-64",
+    rounded = "rounded-xl",
+    shadow = "shadow-md",
+    hover = true,
+    transition = true,
+    draggable = false,
+    colSpan = ""
+} = Astro.props;
+
+const hoverClass = hover ? "hover:shadow-lg hover:scale-[1.02]" : "";
+const transitionClass = transition ? "transition-all duration-300 ease-in-out" : "";
+const cursorClass = draggable ? "cursor-grab active:cursor-grabbing" : "";
+---
+
+<div class={`${bgColor} ${textColor} ${width} ${height} ${rounded} ${shadow} ${hoverClass} ${transitionClass} ${colSpan} ${cursorClass} p-6 backdrop-blur-sm flex flex-col relative`}>
+    {title && <h3 class="text-xl font-bold mb-2">{title}</h3>}
+    {description && <p class="text-sm mb-4">{description}</p>}
+    <div class="flex-grow">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .bento-handle:active {
+        cursor: grabbing;
+    }
+</style>
