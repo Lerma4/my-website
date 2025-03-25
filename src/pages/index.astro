@@ -72,22 +72,46 @@ import Layout from "../layouts/Layout.astro";
     </div>
 </Layout>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  // Use a client directive to ensure this runs in the browser
+  import Sortable from 'sortablejs';
+  
+  // Function to initialize Sortable
+  function initSortable() {
     const grid = document.getElementById('bento-grid');
-    if (grid) {
-      new Sortable(grid, {
-        animation: 150,
-        ghostClass: 'sortable-ghost',
-        chosenClass: 'sortable-chosen',
-        dragClass: 'sortable-drag',
-        // Removed the handle option to make the entire card draggable
-        onEnd: function(evt: { oldIndex: any; newIndex: any; }) {
-          // You can add code here to save the new order if needed
-          console.log('Card moved from index', evt.oldIndex, 'to', evt.newIndex);
-        }
-      });
+    if (!grid) return;
+    
+    // Clean up existing instance if any
+    if (grid._sortable) {
+      grid._sortable.destroy();
+    }
+    
+    // Create new Sortable instance
+    const sortableInstance = new Sortable(grid, {
+      animation: 150,
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      dragClass: 'sortable-drag',
+      onEnd: function(evt) {
+        console.log('Card moved from index', evt.oldIndex, 'to', evt.newIndex);
+      }
+    });
+    
+    // Store instance for later cleanup
+    grid._sortable = sortableInstance;
+  }
+  
+  // Initialize when the component is mounted
+  document.addEventListener('DOMContentLoaded', initSortable);
+  
+  // Re-initialize when navigating back to this page
+  document.addEventListener('astro:page-load', initSortable);
+  
+  // Clean up when leaving the page
+  document.addEventListener('astro:before-swap', function() {
+    const grid = document.getElementById('bento-grid');
+    if (grid && grid._sortable) {
+      grid._sortable.destroy();
     }
   });
 </script>
